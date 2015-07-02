@@ -1,0 +1,143 @@
+1) Biblioteka statyczna
+
+gcc -fPIC -Wall -c -o obj.o ../zad1/source.c
+ar src liblib_stat.a obj.o
+gcc -Wall -o prog_stat test.c -I../zad1 -L. -llib_stat
+./prog_stat
+**Checkpoint 1. - Starting point**
+
+
+Creating...
+
+__Checkpoint 2.__
+	usr_time	sys_time	real_time
+last		3.09		0.32		3.42
+whole		3.09		0.32		3.42
+
+
+Sorting...
+
+__Checkpoint 3.__
+	usr_time	sys_time	real_time
+last		13.14		0		13.14
+whole		16.23		0.32		16.56
+
+
+Searching...
+
+__Checkpoint 4.__
+	usr_time	sys_time	real_time
+last		0.32		0		0.31
+whole		16.55		0.32		16.87
+
+
+Deleting...
+
+__Checkpoint 5.__
+	usr_time	sys_time	real_time
+last		1.47		0		1.48
+whole		18.02		0.32		18.35
+
+
+2) Biblioteka dynamiczna dzielona
+
+gcc -fPIC -Wall -c -o obj.o ../zad1/source.c
+gcc -shared -fPIC -o liblib_dyn.so obj.o
+gcc -Wall -Wl,-rpath=`pwd` -o prog_dyn test.c -I../zad1 -L. -llib_dyn
+./prog_dyn
+**Checkpoint 1. - Starting point**
+
+
+Creating...
+
+__Checkpoint 2.__
+	usr_time	sys_time	real_time
+last		3.21		0.26		3.48
+whole		3.21		0.26		3.48
+
+
+Sorting...
+
+__Checkpoint 3.__
+	usr_time	sys_time	real_time
+last		12.66		0		12.66
+whole		15.87		0.26		16.14
+
+
+Searching...
+
+__Checkpoint 4.__
+	usr_time	sys_time	real_time
+last		1.17		0		1.17
+whole		17.04		0.26		17.31
+
+
+Deleting...
+
+__Checkpoint 5.__
+	usr_time	sys_time	real_time
+last		1.49		0		1.49
+whole		18.53		0.26		18.8
+
+
+
+3) Biblioteka ladowana z poziomu kodu
+
+gcc -fPIC -Wall -c -o obj.o ../zad1/source.c
+gcc -shared -fPIC -o liblib_dyn.so obj.o
+gcc -Wall -Wl,-rpath=`pwd` -D DLL -o prog_DLL test.c -I../zad1 -ldl
+./prog_DLL
+
+    Otwarcie biblioteki "liblib_dyn", rezultat -(null)- 
+    Szukanie funkcji "compare", rezultat -(null)- 
+    Szukanie funkcji "make_contact", rezultat -(null)- 
+    Szukanie funkcji "print_contact", rezultat -(null)- 
+    Szukanie funkcji "init", rezultat -(null)- 
+    Szukanie funkcji "add_after", rezultat -(null)- 
+    Szukanie funkcji "prepend", rezultat -(null)- 
+    Szukanie funkcji "append", rezultat -(null)- 
+    Szukanie funkcji "add_sorted", rezultat -(null)- 
+    Szukanie funkcji "find", rezultat -(null)- 
+    Szukanie funkcji "remove_at", rezultat -(null)- 
+    Szukanie funkcji "destroy", rezultat -(null)- 
+    Szukanie funkcji "print", rezultat -(null)- 
+    Szukanie funkcji "print_reverse", rezultat -(null)- 
+    Szukanie funkcji "sort", rezultat -(null)- 
+
+
+**Checkpoint 1. - Starting point**
+
+
+Creating...
+
+__Checkpoint 2.__
+	usr_time	sys_time	real_time
+last		3.1		0.27		3.39
+whole		3.1		0.27		3.39
+
+
+Sorting...
+
+__Checkpoint 3.__
+	usr_time	sys_time	real_time
+last		13.11		0		13.11
+whole		16.21		0.27		16.5
+
+
+Searching...
+
+__Checkpoint 4.__
+	usr_time	sys_time	real_time
+last		0.01		0		0.02
+whole		16.22		0.27		16.52
+
+
+Deleting...
+
+__Checkpoint 5.__
+	usr_time	sys_time	real_time
+last		1.55		0.01		1.55
+whole		17.77		0.28		18.07
+
+
+    Zamykanie biblioteki "liblib_dyn", rezultat -(null)-
